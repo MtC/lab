@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteBase /public/api/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ app.php [QSA,L]

@@ -9,7 +9,7 @@ angular.module('MtClab', [])
             // A user has logged in! Here you need to:
             // 1. Send the assertion to your backend for verification and to create a session.
             // 2. Update your UI.
-            $.ajax({ /* <-- This example uses jQuery, but you can use whatever you'd like */
+            $http({ /* <-- This example uses jQuery, but you can use whatever you'd like */
               type: 'POST',
               url: '/auth/login', // This is a URL on your website.
               data: {assertion: assertion},
@@ -25,7 +25,7 @@ angular.module('MtClab', [])
             // Tear down the user's session by redirecting the user or making a call to your backend.
             // Also, make sure loggedInUser will get set to null on the next page load.
             // (That's a literal JavaScript null. Not false, 0, or undefined. null.)
-            $.ajax({
+            $http({
               type: 'POST',
               url: '/auth/logout', // This is a URL on your website.
               success: function(res, status, xhr) { window.location.reload(); },
