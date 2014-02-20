@@ -27,6 +27,9 @@ class ResourceNotFoundException extends Exception {}
 /**
  *  testroutes
  */
+$app->get('/test', function () use ($app) {
+    echo json_encode(['testing' => 'ok']);
+});
 $app->get('/trial', function () use ($app, $connection) {
     //$mptt = new \Mptt\Mptt($connection);
     //$mptt->createTable('languages');
