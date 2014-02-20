@@ -4,13 +4,19 @@
         <title>{{main.title}}</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <!-- voor IE moet er of een meta tag of een header komen!! -->
         <link href="http://fonts.googleapis.com/css?family=Ubuntu:500|Open+Sans" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="css/main.css" />
+        <!--<link rel="stylesheet" href="css/main.css" />-->
         <link rel="stylesheet" href="css/persona-buttons.css" />
         <link rel="stylesheet" href="css/font-awesome.css">
     </head>
     <body>
-        <div>TODO write content</div>
+        <div>
+            <button class="persona-button" data-ng-hide="loggedIn" data-ng-click="login()">login</button>
+            <button class="persona-button" data-ng-show="loggedIn" data-ng-click="logout()">logout</button>
+        </div>
+        <script src="https://login.persona.org/include.js"></script>
+        <script src="js/vendor/angular.min.js"></script>
+        <script src="js/main.js"></script>
     </body>
 </html>
