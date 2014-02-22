@@ -1,0 +1,36 @@
+<?xml version="1.0" standalone="no"?> 
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" height="83" width="90">
+    <g id="logo-NT2LAB">
+        <svg x="6" y="2" width="26" height="26">
+                <!-- N -->
+                <polygon fill="#ff7130" points="0,0 6,0 16,14 16,0 22,0 22,26 16,26 6,12 6,26 0,26" />
+        </svg>
+        <svg x="15" y="2" width="66" height="72">
+                <!-- erlenmeyer -->
+                <g id="logo-erlenmeyer">
+                        <polygon fill="#ff7130" points="22,0 22,6 29,6 29,26 37,26 37,6 44,6 44,0" />
+                        <line stroke="#ff7130" x1="33" x2="4" y1="26" y2="68" stroke-width="8" stroke-linecap="round" />
+                        <line stroke="#ff7130" x1="6" x2="60" y1="68" y2="68" stroke-width="8" stroke-linecap="round" />
+                        <line stroke="#ff7130" x1="62" x2="38.37" y1="68" y2="36" stroke-width="8" stroke-linecap="round" />
+                </g>
+                <polygon fill="#ff7130" points="18,61 48,61 37,47 27,47" />
+        </svg>
+        <svg x="68" y="2" width="22" height="26">
+                <!-- 2 -->
+                <polygon fill="#ff7130" points="0,0 22,0 22,16 8,16 8,20 22,20 22,26 0,26 0,10 16,10 16,6 0,6" />
+        </svg>
+        <svg x="68" y="29" width="22" height="54">
+                <g id="logo-LAB">
+                        <!-- L -->
+                        <polygon fill="#ff7130" points="0,48 16,48 16,40 22,40 22,54 0,54" />
+                        <!-- A -->
+                        <polygon fill="#ff7130" points="16,28 16,21 22,21 22,15 0,15 16,37 22,37" />
+                        <!-- B -->
+                        <rect fill="#ff7130" x="0" y="6" width="22" height="6" />
+                        <ellipse fill="#ff7130" cx="5" cy="6" rx="5" ry="4" />
+                        <ellipse fill="#ff7130" cx="16" cy="6" rx="6" ry="4" />
+                </g>
+        </svg>
+    </g>
+</svg>

@@ -1,4 +1,4 @@
-angular.module('MtClab', [])
+angular.module('MtClab', ['pascalprecht.translate'])
 
     .run(['$rootScope', function ($rootScope) {
         var currentUser = 'bob@example.com';
