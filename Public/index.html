@@ -2,33 +2,76 @@
 <html data-ng-app="MtClab">
     <head>
         <title>{{main.title}}</title>
-        <meta charset="utf-8" />
+        <!-- move charset to header -->
+        <!--<meta charset="utf-8" />-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!-- voor IE moet er of een meta tag of een header komen!! -->
         <link href="http://fonts.googleapis.com/css?family=Ubuntu:500|Open+Sans" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="css/main.css" />
-        <link rel="stylesheet" href="css/vendor/persona-buttons.css" />
-        <link rel="stylesheet" href="css/vendor/font-awesome.css">
+        <link rel="stylesheet" type="text/css" href="css/main.css" />
+        <!--<link rel="stylesheet" type="text/css" href="css/vendor/persona-buttons.css" />-->
+        <link rel="stylesheet" type="text/css" href="css/vendor/font-awesome.css">
     </head>
     <body>
-        <nav id="main-nav" role="navigation">
-            <ul role="menu">
-                <li role="presentation"><a role="menuitem" href="#!/"><i class="fa fa-home fa-2x fa-fw"></i></a><span>NT2lab</span></li>
-                <li role="presentation"><a role="menuitem" href="#!/{{'url.apps' | translate}}"><i class="fa fa-th-list fa-2x fa-fw"></i></a><span>{{'menu.app.name' | translate}}</span></li>
-                <li role="presentation"><a role="menuitem" href="#!/{{'url.options' | translate}}"><i class="fa fa-cog fa-2x fa-fw"></i></a><span>{{'menu.options.name' | translate}}</span></li>
-                <li role="presentation">
-                    <a role="menuitem" ng-show="isAuthenticated()" href="#!/{{'url.user' | translate}}"><i class="fa fa-user fa-2x fa-fw"></i></a><span>{{'menu.user.name' | translate}}</span>
-                </li>
-                <li role="presentation" ng-show="!isAuthenticated()"><a role="menuitem" href="#!/{{'url.login' | translate}}"><i class="fa fa-unlock fa-2x fa-fw"></i></a><span>{{'menu.login.name' | translate}}</span></li>
-                <li role="presentation" ng-show="isAuthenticated()"><a role="menuitem" href ng-click="logout()"><i class="fa fa-lock fa-2x fa-fw"></i></a><span>{{'menu.logout.name' | translate}}</span></li>
-            </ul>
-        </nav>
+        <noscript>
+            Deze website werkt alleen met javascript.
+        </noscript>
+        <div id="wrap">
+            <header>
+                <nav role="navigation" data-ng-controller="NavigationCtrl">
+                    <ul role="menu">
+                        <li role="presentation" data-ng-click="menu()">
+                            <i class="fa fa-th-list fa-3x fa-fw"></i>
+                            <div>NT2lab</div>
+                            <img class="svg-logo" src="img/logo.svg" alt="logo" />
+                        </li>
+                        <li role="presentation" data-ng-click="goto(url.home)" data-ng-class="{true: 'hiddenMenu', false: ''}[isMenuHidden]">
+                            <i class="fa fa-lightbulb-o fa-2x fa-fw"></i><span>{{'menu.home' | translate}}</span>
+                        </li>
+                        <li role="presentation" data-ng-click="goto(url.apps)" data-ng-class="{true: 'hiddenMenu', false: ''}[isMenuHidden]">
+                            <i class="fa fa-th-large fa-2x fa-fw"></i><span>{{'menu.app' | translate}}</span>
+                        </li>
+                        <li role="presentation" data-ng-click="goto(url.options)"data-ng-class="{true: 'hiddenMenu', false: ''}[isMenuHidden]">
+                            <i class="fa fa-cog fa-2x fa-fw"></i><span>{{'menu.options' | translate}}</span>
+                        </li>
+                        <li role="presentation" data-ng-click="goto(url.user)" ng-show="isAuthenticated()"data-ng-class="{true: 'hiddenMenu', false: ''}[isMenuHidden]">
+                            <i class="fa fa-user fa-2x fa-fw"></i><span>{{'menu.user' | translate}}</span>
+                        </li>
+                        <li role="presentation" data-ng-click="goto(url.feedback)" ng-show="isAuthenticated()"data-ng-class="{true: 'hiddenMenu', false: ''}[isMenuHidden]">
+                            <i class="fa fa-comments fa-2x fa-fw"></i><span>{{'menu.feedback' | translate}}</span>
+                        </li>
+                        <li role="presentation" data-ng-click="goto(url.about)" data-ng-class="{true: 'hiddenMenu', false: ''}[isMenuHidden]">
+                            <i class="fa fa-puzzle-piece fa-2x fa-fw"></i><span>{{'menu.about' | translate}}</span>
+                        </li>
+                        <li role="presentation" data-ng-click="goto(url.contact)" data-ng-class="{true: 'hiddenMenu', false: ''}[isMenuHidden]">
+                            <i class="fa fa-reply fa-2x fa-fw"></i><span>{{'menu.contact' | translate}}</span>
+                        </li>
+                        <li role="presentation" data-ng-click="goto(url.login)" ng-show="!isAuthenticated()"data-ng-class="{true: 'hiddenMenu', false: ''}[isMenuHidden]">
+                            <i class="fa fa-unlock fa-2x fa-fw"></i><span>{{'menu.login' | translate}}</span>
+                        </li>
+                        <li role="presentation" data-ng-click="goto(url.login)" ng-show="isAuthenticated()"data-ng-class="{true: 'hiddenMenu', false: ''}[isMenuHidden]">
+                            <i class="fa fa-lock fa-2x fa-fw"></i><span>{{'menu.logout' | translate}}</span>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+            <section>
+                <p class="screenSize">kleiner dan de iPad, portrait</p>
+                <p class="screenSize">kleiner dan de iPad, landscape</p>
+                <p class="screenSize">minimaal iPad, portrait</p>
+                <p class="screenSize">minimaal iPad, landscape</p>
+                <p class="screenSize">desktop, groter scherm</p>
+            </section>
+        </div>
+        <!--
         <div>
             <button class="persona-button" data-ng-hide="loggedIn" data-ng-click="login()"><span>{{main.login}}</span></button>
             <button class="persona-button" data-ng-show="loggedIn" data-ng-click="logout()"><span>{{main.logout}}</span></button>
         </div>
-        <script src="https://login.persona.org/include.js"></script>
+        -->
+        <!--<script src="https://login.persona.org/include.js"></script>-->
         <script src="js/vendor/angular.min.js"></script>
+        <script src="js/vendor/angular-route.min.js"></script>
+        <script src="js/vendor/angular-touch.min.js"></script>
         <script src="js/vendor/angular-translate.min.js"></script>
         <script src="js/mtclab.js"></script>
     </body>

@@ -1,46 +1,56 @@
-angular.module('MtClab', ['pascalprecht.translate'])
+angular.module('MtClab', ['ngRoute','ngTouch','pascalprecht.translate'])
+    
+    .config(function($locationProvider, $translateProvider, $httpProvider, $routeProvider) {
+        $httpProvider.defaults.useXDomain = true;
+		if (!$httpProvider.defaults.headers.get) {
+			$httpProvider.defaults.headers.get = {};    
+		}
+		$httpProvider.defaults.headers.get['If-Modified-Since'] = '0';
+        $locationProvider.html5Mode(false).hashPrefix('!');
+        $translateProvider.translations('nl', {
+            'menu.home':    'nieuws',
+            'menu.app':     'apps',
+            'menu.options': 'opties',
+            'menu.feedback':'feedback',
+            'menu.user':    'gebruiker',
+            'menu.login':   'inloggen',
+            'menu.logout':  'uitloggen',
+            'menu.about':   'over ons',
+            'menu.contact': 'contact'
+        });
+        $translateProvider.preferredLanguage('nl');
+        $routeProvider.
+			when('/:url*', {
+				templateUrl: function (url) {
+					return 'api/templates/' + url.url;
+				}
+			}).
+			otherwise({ redirectTo: '/index'});
+    })
+    
+    .controller('NavigationCtrl', ['$scope','$location',function ($scope, $location) {
+            $scope.url = {
+                home:     '',
+                apps:     'apps',
+                options:  'opties',
+                feedback: 'feedback',
+                user:     'gebruiker',
+                login:    'inloggen',
+                about:    'over-nt2lab',
+                contact:  'contact'
+            };
+            $scope.isMenuHidden = true;
+            
+            $scope.menu = function () {
+                $scope.isMenuHidden = !$scope.isMenuHidden;
+            };
+            
+            $scope.goto = function (location) {
+                $scope.isMenuHidden = true;
+                $location.path(location);
+            };
+    }])
 
     .run(['$rootScope', function ($rootScope) {
-        var currentUser = 'bob@example.com';
-
-        navigator.id.watch({
-          loggedInUser: currentUser,
-          onlogin: function(assertion) {
-            // A user has logged in! Here you need to:
-            // 1. Send the assertion to your backend for verification and to create a session.
-            // 2. Update your UI.
-            $http({ /* <-- This example uses jQuery, but you can use whatever you'd like */
-              type: 'POST',
-              url: '/auth/login', // This is a URL on your website.
-              data: {assertion: assertion},
-              success: function(res, status, xhr) { window.location.reload(); },
-              error: function(xhr, status, err) {
-                navigator.id.logout();
-                alert("Login failure: " + err);
-              }
-            });
-          },
-          onlogout: function() {
-            // A user has logged out! Here you need to:
-            // Tear down the user's session by redirecting the user or making a call to your backend.
-            // Also, make sure loggedInUser will get set to null on the next page load.
-            // (That's a literal JavaScript null. Not false, 0, or undefined. null.)
-            $http({
-              type: 'POST',
-              url: '/auth/logout', // This is a URL on your website.
-              success: function(res, status, xhr) { window.location.reload(); },
-              error: function(xhr, status, err) { alert("Logout failure: " + err); }
-            });
-          }
-        });
         
-        $rootScope.loggedIn = false;
-    
-        $rootScope.login = function () {
-            navigator.id.request();
-        };
-        
-        $rootScope.logout = function () {
-            navigator.id.logout();
-        };
     }]);
